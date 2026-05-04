@@ -45,40 +45,202 @@
     <link href="css/responsive.css" rel="stylesheet" />
 
     <style>
-        .fixed-icon {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #d18f00;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 24px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            z-index: 1000;
+    body {
+        background: #f7f7f7;
+    }
+
+    .fixed-icon {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: #d18f00;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 24px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        z-index: 1000;
+        border: none;
+    }
+
+    .fixed-icon:hover {
+        background-color: #222831;
+    }
+
+    .hero_area {
+        min-height: auto;
+        background: #111;
+    }
+
+    .hero_area .bg-box,
+    .slider_section {
+        display: none !important;
+    }
+
+    .header_section {
+        padding: 14px 0;
+        background: #111;
+    }
+
+    .custom_nav-container {
+        padding: 0;
+    }
+
+    .order_online {
+        border: none;
+        border-radius: 30px;
+        padding: 9px 22px;
+        font-weight: 600;
+    }
+
+    .food_section {
+        padding: 35px 0 50px;
+    }
+
+    .heading_container h2 {
+        font-size: 24px;
+        font-weight: 800;
+        color: #222831;
+        margin-bottom: 5px;
+    }
+
+    .heading_container::after {
+        content: "Cardápio rápido e direto";
+        font-size: 14px;
+        color: #777;
+    }
+
+    .dropdown-menu-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 25px;
+    }
+
+    .dropdown-btn {
+        background: #222831;
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        padding: 10px 28px;
+        font-weight: 600;
+    }
+
+    .filters-content .row {
+        row-gap: 14px;
+    }
+
+    .food_section .box {
+        background: #fff;
+        border-radius: 14px;
+        padding: 18px;
+        height: 100%;
+        box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+        border: 1px solid #eee;
+    }
+
+    .food_section .box .img-box {
+        display: none !important;
+    }
+
+    .food_section .box .detail-box {
+        padding: 0;
+        background: transparent;
+        color: #222;
+    }
+
+    .food_section .box .detail-box h5 {
+        font-size: 17px;
+        font-weight: 800;
+        color: #222831;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+    }
+
+    .food_section .box .detail-box p {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.4;
+        margin-bottom: 16px;
+        min-height: 58px;
+    }
+
+    .food_section .box .options {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    .food_section .box .options h4 {
+        font-size: 18px;
+        font-weight: 800;
+        margin: 0;
+        color: #d18f00 !important;
+        white-space: nowrap;
+    }
+
+    .btn-cart {
+        background: #222831;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .btn-cart:hover {
+        background: #d18f00;
+        color: #fff;
+    }
+
+    @media (max-width: 768px) {
+        .header_section img {
+            width: 120px;
         }
 
-        .fixed-icon:hover {
-            background-color: #222831;
+        .food_section {
+            padding-top: 25px;
         }
-    </style>
+
+        .heading_container h2 {
+            font-size: 21px;
+        }
+
+        .food_section .box {
+            padding: 16px;
+        }
+
+        .food_section .box .detail-box p {
+            min-height: auto;
+        }
+
+        .food_section .box .options {
+            align-items: flex-start;
+        }
+
+        .btn-cart {
+            padding: 8px 14px;
+            font-size: 13px;
+        }
+    }
+</style>
 </head>
 
-<body>
+<body >
 
     <!-- HERO -->
-    <div class="hero_area">
-        <div class="bg-box">
-            <img src="images/hero-bg.jpg" alt="">
-        </div>
+    <div class="hero_area" >
 
         <!-- header section strats -->
-        <header class="header_section">
+        <header class="header_section" style="background-color: #181818;">
             <div class="container">
                 <nav class="navbar navbar-expand-lg custom_nav-container ">
                     <span>
@@ -261,15 +423,15 @@
 </div>
 
     <!-- MENU -->
-    <section class="food_section layout_padding-bottom" id="menu">
+    <section class="food_section layout_padding-bottom" id="menu" style="background-color: #181818;">
         <div class="container">
             <div class="heading_container heading_center"><br>
-                <h2>ESCOLHA A VONTADE</h2>
+                <h2 style="color: red;"><i>ESCOLHA A VONTADE</i></h2>
             </div>
             <br><br><br>
 
             <div class="dropdown-menu-wrapper">
-                <button class="dropdown-btn">Filtrar</button>
+                <button class="dropdown-btn" style="border-radius: 10px; background-color: red;">BUSCAR</button>
                 <div class="dropdown-content">
                     <ul class="filters_menu">
                         <li class="active" data-filter="*">Todos</li>
@@ -294,7 +456,7 @@
                                 <p id="descricao">Pão de hamburguer com molho de cheddar, queijo mussarela, ovo, alface,
                                     tomate e batata palha</p>
                                 <div class="options">
-                                    <h4 id="preco" style="color: #d18f00;">R$ 15,00</h4>
+                                    <h4 id="preco" style="color: #d18f00; font-size: 19PX;">R$ 15,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -313,7 +475,7 @@
                                 <p> Pão de hamburguer com molho de cheddar, 90g de carne, alface, tomate e<br> batata
                                     palha</p>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 12,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 12,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -332,7 +494,7 @@
                                 <p> Pão de hamburguer com molho cheddar, 90g de carne, queijo mussarela, presunto,
                                     alface, tomate e batata palha</p>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 14,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 14,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -352,7 +514,7 @@
                                     Pão de hamburguer com molho de cheddar, 90g de carne, ovo, alface, tomate e batata
                                     palha</p>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 15,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 15,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -371,7 +533,7 @@
                                 <p> Pão de hamburguer com molho de cheddar, 90g de carne, ovo, queijo mussarela,
                                     presunto, alface, tomate e batata palha </p>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 16,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 16,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -390,7 +552,7 @@
                                 <p> Pão de hamburguer com molho de cheddar, 90g de carne, queijo mussarela, presunto,
                                     bacon, alface, tomate e batata palha</p>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 18,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 18,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -409,7 +571,7 @@
                                 <p> Pão de hamburguer com molho de chaddar, 90g de carne, ovo, queijo mussarela,
                                     presunto, bacon, alface, tomate e batata palha</p>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 19,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 19,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -428,7 +590,7 @@
                                 <p> Pão de hamburguer com molho de cheddar, 90g de carne, presunto, queijo mussarela,
                                     calabresa, alface, tomate e <br> batata palha</p>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 17,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 17,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -447,7 +609,7 @@
                                 <p> Pão de hamburguer com molho de cheddar, 90g de carne, ovo, queijo mussarela,
                                     presunto, calabresa, alface, tomate e batata palha</p>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 18,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 18,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -466,7 +628,7 @@
                                 <p> Pão de hamburguer com molho de cheddar, 90g de carne, queijo mussarela, presunto,
                                     bacon, calabresa, ovo, alface, tomate e batata palha
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 26,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 26,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -485,7 +647,7 @@
                                 <p>Pão de hamburguer com molho de cheddar, 2 carnes de 90g, 2 queijo mussarela, 2
                                     presunto, 2 ovo, bacon, calabresa, alface, tomate e batata palha</p>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 32,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 32,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -504,7 +666,7 @@
                                 <p>Pão de hamburguer com molho de cheddar, 3 carnes de 90g, 3 queijo mussarela, 3
                                     presunto, 3 ovo, bacon, calabresa, alface, tomate e batata palha</p>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 40,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 40,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -523,7 +685,7 @@
                             <div class="detail-box">
                                 <h5>BATATA FRITA</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 20,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 20,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -541,7 +703,7 @@
                             <div class="detail-box">
                                 <h5>MEIA BATATA FRITA</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 10,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 10,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -558,7 +720,7 @@
                             <div class="detail-box">
                                 <h5>BATATA COM CHEDDAR</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 23,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 23,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -575,7 +737,7 @@
                             <div class="detail-box">
                                 <h5>BATATA C/ BACON</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 29,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 29,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -592,7 +754,7 @@
                             <div class="detail-box">
                                 <h5>BATATA C/ BACON E CHEDDAR</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 32,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 32,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -609,7 +771,7 @@
                             <div class="detail-box">
                                 <h5>BATATA COM CALABRESA</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 28,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 28,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -626,7 +788,7 @@
                             <div class="detail-box">
                                 <h5>BATATA C/ CALABRESA E LINGUIÇA</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 60,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 60,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -643,7 +805,7 @@
                             <div class="detail-box">
                                 <h5>BAURU</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 49,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 49,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -660,7 +822,7 @@
                             <div class="detail-box">
                                 <h5>MEIO BAURU</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 25,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 25,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -678,7 +840,7 @@
                             <div class="detail-box">
                                 <h5>GUARAVITA</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 4,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 4,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -697,7 +859,7 @@
                             <div class="detail-box">
                                 <h5>COCA-COLA LATA</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 8,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 8,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -714,7 +876,7 @@
                             <div class="detail-box">
                                 <h5>COCA-COLA ZERO LATA</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 8,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 8,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -749,7 +911,7 @@
                             <div class="detail-box">
                                 <h5>REFRIGERANTE 2 LITROS</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 14,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 14,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -766,7 +928,7 @@
                             <div class="detail-box">
                                 <h5>GUARAVITON</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 8,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 8,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -785,7 +947,7 @@
                             <div class="detail-box">
                                 <h5>GUARAPLUS</h5>
                                 <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 3,00</h4>
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 3,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -794,39 +956,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-lg-4 all bebidas">
-                        <div class="box" data-id="25">
-                            <div class="img-box">
-                                <img src="itens/activplus.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>ACTIV PLUS CITRUS</h5>
-                                <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 8,00</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4 all bebidas">
-                        <div class="box" data-id="26">
-                            <div class="img-box">
-                                <img src="itens/agua-gas.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>ÁGUA COM GÁS</h5>
-                                <div class="options">
-                                    <h4 style="color: #d18f00;">R$ 4,00</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>

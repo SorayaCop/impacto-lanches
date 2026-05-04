@@ -27,14 +27,12 @@ function addToCart(event) {
     if (!productContainer) return;
 
     const productId = productContainer.getAttribute('data-id');
-    const productImage = productContainer.querySelector('img')?.src;
     const productTitle = productContainer.querySelector('h5')?.innerText;
-    const productDescription = productContainer.querySelector('h6')?.innerText;
     const productPrice = productContainer.querySelector('.options h4')?.innerText
         .replace('R$', '')
         .trim();
 
-    if (!productId || !productImage || !productTitle || !productPrice) return;
+    if (!productId || !productTitle || !productPrice) return;
 
     const cartItemsList = document.getElementById('cart-items-list');
 
@@ -43,9 +41,7 @@ function addToCart(event) {
     });
 
     if (existingCartItem) {
-        const quantityInput =
-            existingCartItem.querySelector('.quantity-input');
-
+        const quantityInput = existingCartItem.querySelector('.quantity-input');
         quantityInput.value = parseInt(quantityInput.value) + 1;
         atualizarTotal();
 
@@ -53,25 +49,20 @@ function addToCart(event) {
         const cartItemHTML = `
             <li class="table-row cart-item" data-id="${productId}">
                 <div class="col col-1">
-                    <img src="${productImage}" width="70px" alt="">
+                    <strong>${productTitle}</strong>
                 </div>
 
-                <div class="col col-2">
-                    ${productTitle}
-                    <p>${productDescription || ''}</p>
-                </div>
-
-                <div class="col col-3 item-preco">
+                <div class="col col-2 item-preco">
                     <b>R$ ${productPrice}</b>
                 </div>
 
-                <div class="col col-4 quantity-control">
+                <div class="col col-3 quantity-control">
                     <button class="btn-decrement">-</button>
                     <input type="text" class="quantity-input" value="1" readonly />
                     <button class="btn-increment">+</button>
                 </div>
 
-                <div class="col col-5">
+                <div class="col col-4">
                     <button type="button" class="btn btn-danger">
                         Retirar
                     </button>
@@ -94,7 +85,6 @@ addToCartButtons.forEach(button => {
 // Eventos carrinho
 document.addEventListener('click', function (event) {
 
-    // Diminuir quantidade
     if (event.target.classList.contains('btn-decrement')) {
         const quantityInput = event.target.nextElementSibling;
         let quantity = parseInt(quantityInput.value);
@@ -105,7 +95,6 @@ document.addEventListener('click', function (event) {
         }
     }
 
-    // Aumentar quantidade
     if (event.target.classList.contains('btn-increment')) {
         const quantityInput = event.target.previousElementSibling;
         let quantity = parseInt(quantityInput.value);
@@ -114,7 +103,6 @@ document.addEventListener('click', function (event) {
         atualizarTotal();
     }
 
-    // Remover item
     if (event.target.classList.contains('btn-danger')) {
         const cartItem = event.target.closest('li');
         cartItem.remove();
@@ -160,10 +148,8 @@ function generateWhatsAppMessage() {
     let totalProdutos = 0;
 
     cartItems.forEach(item => {
-        const title = item.querySelector('.col-2').innerText.split('\n')[0];
-        const quantity = parseInt(
-            item.querySelector('.quantity-input').value
-        );
+        const title = item.querySelector('.col-1 strong').innerText;
+        const quantity = parseInt(item.querySelector('.quantity-input').value);
 
         const price = parseFloat(
             item.querySelector('.item-preco b').textContent
@@ -173,40 +159,17 @@ function generateWhatsAppMessage() {
 
         totalProdutos += price * quantity;
 
-        message += `*${title}* - Quantidade: ${quantity} - Preço: R$ ${(price * quantity).toFixed(2).replace('.', ',')}\n`;
+        message += `*${title}* - Qtd: ${quantity} - R$ ${(price * quantity).toFixed(2).replace('.', ',')}\n`;
     });
-
-    const neighborhood =
-        document.getElementById('inputNeighborhood')?.value.trim() || '';
 
     const name = document.getElementById('inputName').value.trim();
     const address = document.getElementById('inputAddress').value.trim();
-    const cep = document.getElementById('inputZip').value.trim();
     const paymentMethod = document.getElementById('inputState').value;
-    const observations =
-        document.getElementById('inputAddress2').value.trim();
 
-    message += `\n*Total dos itens: R$ ${totalProdutos.toFixed(2).replace('.', ',')}*\n`;
-    message += `*Frete:* consultar na finalização do pedido\n\n`;
-
-    message += '*Dados para Entrega:*\n';
+    message += `\n*Total: R$ ${totalProdutos.toFixed(2).replace('.', ',')}*\n\n`;
     message += `*Nome*: ${name}\n`;
-
-    if (neighborhood) {
-        message += `*Bairro*: ${neighborhood}\n`;
-    }
-
-    if (cep) {
-        message += `*Endereço*: ${address} - CEP: ${cep}\n`;
-    } else {
-        message += `*Endereço*: ${address}\n`;
-    }
-
-    message += `*Forma de Pagamento*: ${paymentMethod}\n`;
-
-    if (observations) {
-        message += `*Observações:* ${observations}\n`;
-    }
+    message += `*Endereço*: ${address}\n`;
+    message += `*Pagamento*: ${paymentMethod}\n`;
 
     return message;
 }
