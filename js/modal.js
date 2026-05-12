@@ -1,14 +1,38 @@
 let cartItems = [];
 
-// Função para atualizar o valor total apenas dos produtos
+function formatarMoeda(valor) {
+    return `R$ ${valor.toFixed(2).replace('.', ',')}`;
+}
+
+function converterPreco(precoTexto) {
+    return parseFloat(
+        precoTexto
+            .replace('R$', '')
+            .replace(/\./g, '')
+            .replace(',', '.')
+            .trim()
+    ) || 0;
+}
+
+function obterValorFrete() {
+    const selectBairro = document.getElementById('inputNeighborhood');
+
+    if (!selectBairro || !selectBairro.value) {
+        return 0;
+    }
+
+    const selectedOption = selectBairro.options[selectBairro.selectedIndex];
+    return parseFloat(selectedOption.getAttribute('data-frete')) || 0;
+}
+
 function atualizarTotal() {
     const cartItems = document.querySelectorAll('#cart-items-list .cart-item');
     let totalProdutos = 0;
 
     cartItems.forEach(item => {
-        const preco = parseFloat(
-            item.querySelector('.item-preco b').textContent.replace('R$', '').trim()
-        ) || 0;
+        const preco = converterPreco(
+            item.querySelector('.item-preco b').textContent
+        );
 
         const quantidade = parseInt(
             item.querySelector('.quantity-input').value
@@ -17,11 +41,20 @@ function atualizarTotal() {
         totalProdutos += preco * quantidade;
     });
 
-    document.getElementById('total-value').textContent =
-        `R$ ${totalProdutos.toFixed(2).replace('.', ',')}`;
+    const valorFrete = obterValorFrete();
+    const totalFinal = totalProdutos + valorFrete;
+
+    document.getElementById('total-value').textContent = formatarMoeda(totalProdutos);
+
+    if (document.getElementById('delivery-value')) {
+        document.getElementById('delivery-value').textContent = formatarMoeda(valorFrete);
+    }
+
+    if (document.getElementById('final-total-value')) {
+        document.getElementById('final-total-value').textContent = formatarMoeda(totalFinal);
+    }
 }
 
-// Função para adicionar produto ao carrinho
 function addToCart(event) {
     const productContainer = event.target.closest('.box');
     if (!productContainer) return;
@@ -44,7 +77,6 @@ function addToCart(event) {
         const quantityInput = existingCartItem.querySelector('.quantity-input');
         quantityInput.value = parseInt(quantityInput.value) + 1;
         atualizarTotal();
-
     } else {
         const cartItemHTML = `
             <li class="table-row cart-item" data-id="${productId}">
@@ -75,16 +107,13 @@ function addToCart(event) {
     }
 }
 
-// Botões adicionar ao carrinho
 const addToCartButtons = document.querySelectorAll('.btn-cart');
 
 addToCartButtons.forEach(button => {
     button.addEventListener('click', addToCart);
 });
 
-// Eventos carrinho
 document.addEventListener('click', function (event) {
-
     if (event.target.classList.contains('btn-decrement')) {
         const quantityInput = event.target.nextElementSibling;
         let quantity = parseInt(quantityInput.value);
@@ -110,11 +139,22 @@ document.addEventListener('click', function (event) {
     }
 });
 
-// Validação
+const selectBairro = document.getElementById('inputNeighborhood');
+
+if (selectBairro) {
+    selectBairro.addEventListener('change', atualizarTotal);
+}
+
 function validateInputs() {
     const name = document.getElementById("inputName").value.trim();
     const address = document.getElementById("inputAddress").value.trim();
+    const neighborhood = document.getElementById("inputNeighborhood").value;
     const paymentMethod = document.getElementById("inputState").value;
+
+    if (!neighborhood) {
+        alert("Por favor, selecione seu bairro.");
+        return false;
+    }
 
     if (!name) {
         alert("Por favor, informe seu nome.");
@@ -134,7 +174,6 @@ function validateInputs() {
     return true;
 }
 
-// Mensagem WhatsApp
 function generateWhatsAppMessage() {
     let message = '*Olá, gostaria de fazer um Pedido:*\n\n';
 
@@ -151,30 +190,42 @@ function generateWhatsAppMessage() {
         const title = item.querySelector('.col-1 strong').innerText;
         const quantity = parseInt(item.querySelector('.quantity-input').value);
 
-        const price = parseFloat(
+        const price = converterPreco(
             item.querySelector('.item-preco b').textContent
-                .replace('R$', '')
-                .trim()
         );
 
-        totalProdutos += price * quantity;
+        const subtotal = price * quantity;
+        totalProdutos += subtotal;
 
-        message += `*${title}* - Qtd: ${quantity} - R$ ${(price * quantity).toFixed(2).replace('.', ',')}\n`;
+        message += `*${title}* - Qtd: ${quantity} - ${formatarMoeda(subtotal)}\n`;
     });
 
     const name = document.getElementById('inputName').value.trim();
     const address = document.getElementById('inputAddress').value.trim();
+    const observations = document.getElementById('inputAddress2').value.trim();
+    const neighborhood = document.getElementById('inputNeighborhood').value;
     const paymentMethod = document.getElementById('inputState').value;
 
-    message += `\n*Total: R$ ${totalProdutos.toFixed(2).replace('.', ',')}*\n\n`;
+    const valorFrete = obterValorFrete();
+    const totalFinal = totalProdutos + valorFrete;
+
+    message += `\n*Subtotal dos itens: ${formatarMoeda(totalProdutos)}*`;
+    message += `\n*Frete - ${neighborhood}: ${formatarMoeda(valorFrete)}*`;
+    message += `\n*Total do pedido: ${formatarMoeda(totalFinal)}*\n\n`;
+
     message += `*Nome*: ${name}\n`;
+    message += `*Bairro*: ${neighborhood}\n`;
     message += `*Endereço*: ${address}\n`;
+
+    if (observations) {
+        message += `*Observações*: ${observations}\n`;
+    }
+
     message += `*Pagamento*: ${paymentMethod}\n`;
 
     return message;
 }
 
-// Enviar pedido
 function sendWhatsAppOrder() {
     if (!validateInputs()) return;
 

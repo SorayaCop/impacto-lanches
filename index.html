@@ -345,14 +345,22 @@
                     <form>
 
                         <!-- BAIRRO -->
+                        <!-- BAIRRO -->
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label><strong>Bairro</strong></label>
-                                <input type="text" class="form-control" id="inputNeighborhood"
-                                    placeholder="Digite seu bairro">
-                                <small class="text-muted">
-                                    O frete será informado no momento da confirmação do pedido.
-                                </small>
+                                <label><strong>Bairro *</strong></label>
+                                <select id="inputNeighborhood" class="form-control">
+                                    <option selected value="">Selecione seu bairro</option>
+                                    <option value="Nova Suiça" data-frete="5">Nova Suiça - R$ 5,00</option>
+                                    <option value="Jardim dos Reis" data-frete="7">Jardim dos Reis - R$ 7,00</option>
+                                    <option value="Chacara" data-frete="10">Chacara - R$ 10,00</option>
+                                    <option value="Jacina" data-frete="10">Jacina - R$ 10,00</option>
+                                    <option value="Amparo" data-frete="15">Amparo - R$ 15,00</option>
+                                    <option value="Vale do Paraiso" data-frete="3">Vale do Paraiso - R$ 3,00</option>
+                                    <option value="Centro" data-frete="15">Centro - R$ 15,00</option>
+                                    <option value="Olaria" data-frete="15">Olaria - R$ 15,00</option>
+                                    <option value="Coroeira" data-frete="15">Coroeira - R$ 15,00</option>
+                                </select>
                             </div>
                         </div>
 
@@ -395,14 +403,24 @@
 
                     <br>
 
-                    <div class="alert alert-warning" style="font-size:14px;">
-                        O frete não está incluso no total abaixo.
+                    <div class="total-div">
+                        <div class="total-label"><b>FRETE:</b></div>
+                        <div class="total-value" style="color:brown;">
+                            <b id="delivery-value">R$ 0,00</b>
+                        </div>
                     </div>
 
                     <div class="total-div">
                         <div class="total-label"><b>TOTAL DOS ITENS:</b></div>
                         <div class="total-value" style="color:brown;">
                             <b id="total-value">R$ 0,00</b>
+                        </div>
+                    </div>
+                    
+                    <div class="total-div">
+                        <div class="total-label"><b>TOTAL DO PEDIDO:</b></div>
+                        <div class="total-value" style="color:brown;">
+                            <b id="final-total-value">R$ 0,00</b>
                         </div>
                     </div>
 
@@ -449,7 +467,7 @@
                 <div class="row grid">
 
                     <div class="col-sm-6 col-lg-4 all caldos">
-                        <div class="box" data-id="1">
+                        <div class="box" data-id="555">
                             <div class="img-box">
                                 <img id="foto" src="itens/zero-carne.png" alt="Imagem do Produto">
                             </div>
@@ -467,7 +485,7 @@
                     </div>
 
                     <div class="col-sm-6 col-lg-4 all caldos">
-                        <div class="box" data-id="1">
+                        <div class="box" data-id="666">
                             <div class="img-box">
                                 <img id="foto" src="itens/zero-carne.png" alt="Imagem do Produto">
                             </div>
@@ -485,7 +503,7 @@
                     </div>
 
                     <div class="col-sm-6 col-lg-4 all caldos">
-                        <div class="box" data-id="1">
+                        <div class="box" data-id="777">
                             <div class="img-box">
                                 <img id="foto" src="itens/zero-carne.png" alt="Imagem do Produto">
                             </div>
@@ -503,7 +521,7 @@
                     </div>
 
                     <div class="col-sm-6 col-lg-4 all yakisobas">
-                        <div class="box" data-id="1">
+                        <div class="box" data-id="888">
                             <div class="img-box">
                                 <img id="foto" src="itens/zero-carne.png" alt="Imagem do Produto">
                             </div>
@@ -522,7 +540,7 @@
                     </div>
 
                     <div class="col-sm-6 col-lg-4 all yakisobas">
-                        <div class="box" data-id="1">
+                        <div class="box" data-id="999">
                             <div class="img-box">
                                 <img id="foto" src="itens/zero-carne.png" alt="Imagem do Produto">
                             </div>
@@ -541,7 +559,7 @@
                     </div>
 
                     <div class="col-sm-6 col-lg-4 all yakisobas">
-                        <div class="box" data-id="1">
+                        <div class="box" data-id="1010">
                             <div class="img-box">
                                 <img id="foto" src="itens/zero-carne.png" alt="Imagem do Produto">
                             </div>
@@ -1140,7 +1158,7 @@
                     &copy;
                     <script>
                         document.write(new Date().getFullYear());
-                    </script> IMPACTO LANCHES <br> 
+                    </script> IMPACTO LANCHES <br>
                 </span>
             </div>
 
