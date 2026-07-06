@@ -13,18 +13,18 @@
 
     <!-- Open Graph / WhatsApp -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="IMPACTO LANCHES 🍔 Delivery em Nova Friburgo">
+    <meta property="og:title" content="IMPACTO LANCHES 🍔">
     <meta property="og:description"
         content="Hambúrgueres, combos, batata frita e bebidas geladas. Faça seu pedido agora pelo catálogo online!">
-    <meta property="og:image" content="https://impacto-lanches.vercel.app/banner.jpg">
-    <meta property="og:url" content="https://seudominio.com.br">
+    <meta property="og:image" content="https://res.cloudinary.com/dwokmdlmi/image/upload/v1783351708/banner_epnavq.jpg">
+    <meta property="og:url" content="https://impacto-lanches.vercel.app/">
     <meta property="og:site_name" content="IMPACTO LANCHES">
 
     <!-- Twitter / compatibilidade -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="IMPACTO LANCHES 🍔 Delivery em Nova Friburgo">
+    <meta name="twitter:title" content="IMPACTO LANCHES 🍔">
     <meta name="twitter:description" content="Peça agora seu lanche favorito no catálogo online.">
-    <meta name="twitter:image" content="https://impacto-lanches.vercel.app/banner-impacto.png">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dwokmdlmi/image/upload/v1783351708/banner_epnavq.jpg">
 
     <!-- favicon -->
     <link rel="shortcut icon" href="favicon-brasa.svg" type="image/svg+xml">
@@ -337,21 +337,31 @@
                     <br>
 
                     <h5 class="modal-title">
-                        Dados para Entrega <ion-icon name="rocket-outline"></ion-icon>
+                        Dados do Pedido <ion-icon name="rocket-outline"></ion-icon>
                     </h5>
 
                     <hr>
 
                     <form>
 
-                        <!-- BAIRRO -->
-                        <!-- BAIRRO -->
+                        <!-- TIPO DO PEDIDO -->
                         <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label><strong>Como deseja receber? *</strong></label>
+                                <select id="inputOrderType" class="form-control">
+                                    <option value="entrega" selected>Entrega</option>
+                                    <option value="retirada">Retirada na loja</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- BAIRRO -->
+                        <div class="form-row" id="neighborhood-row">
                             <div class="form-group col-md-12">
                                 <label><strong>Bairro *</strong></label>
                                 <select id="inputNeighborhood" class="form-control">
                                     <option selected value="">Selecione seu bairro</option>
-                                    <option value="Nova Suiça" data-frete="5">Nova Suiça - R$5,00</option>
+                                    <option value="Nova Suiça" data-frete="5">Nova Suiça - R$ 5,00</option>
                                     <option value="Jardim dos Reis" data-frete="5">Jardim dos Reis - R$ 5,00</option>
                                     <option value="Chacara" data-frete="8">Chacara - R$ 8,00</option>
                                     <option value="Jacina" data-frete="8">Jacina - R$ 8,00</option>
@@ -359,22 +369,20 @@
                                     <option value="Vale do Paraiso" data-frete="5">Vale do Paraiso - R$ 5,00</option>
                                     <option value="Centro" data-frete="15">Centro - R$ 15,00</option>
                                     <option value="Olaria" data-frete="15">Olaria - R$ 15,00</option>
-                                    <option value="Coroeira" data-frete="15">Cordoeira - R$ 15,00</option>
+                                    <option value="Cordoeira" data-frete="15">Cordoeira - R$ 15,00</option>
                                 </select>
                             </div>
                         </div>
 
-                        <!-- NOME + TELEFONE -->
+                        <!-- NOME -->
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <input type="text" class="form-control" id="inputName" placeholder="Seu Nome *">
                             </div>
-
-
                         </div>
 
                         <!-- ENDEREÇO + CEP -->
-                        <div class="form-row">
+                        <div class="form-row" id="address-row">
                             <div class="form-group col-md-9">
                                 <input type="text" class="form-control" id="inputAddress"
                                     placeholder="Endereço com Referência *">
@@ -447,24 +455,41 @@
             </div>
             <br><br><br>
 
-            <div class="dropdown-menu-wrapper">
+            <!--<div class="dropdown-menu-wrapper">
                 <button class="dropdown-btn" style="border-radius: 10px; background-color: red;">BUSCAR</button>
                 <div class="dropdown-content">
                     <ul class="filters_menu">
                         <li class="active" data-filter="*">Todos</li>
-                        <li data-filter=".caldos">CALDOS</li>
-                        <li data-filter=".macarrao">MACARRÃO</li>
-                        <li data-filter=".yakisobas">YAKISOBAS</li>
+                        <li data-filter=".caldos">CALDO</li>
                         <li data-filter=".burguer">BURGUER</li>
                         <li data-filter=".batata">BATATAS</li>
                         <li data-filter=".combos">COMBOS</li>
                         <li data-filter=".bebidas">BEBIDAS</li>
                     </ul>
                 </div>
-            </div><br>
+            </div><br>-->
 
             <div class="filters-content">
                 <div class="row grid">
+
+                    <div class="col-sm-6 col-lg-4 all burguer">
+                        <div class="box" data-id="2000">
+                            <div class="img-box">
+                                <img src="itens/burguer-classico.png" alt="Imagem do Produto">
+                            </div>
+                            <div class="detail-box">
+                                <h5>BURGUER ARTESANAL IMPACTO</h5>
+                                <p> Brend de Carne Artesanal, brioche, queijo cheddar, crispie de couve, rúcula, cebola
+                                    caramelizada com mel, requeijão empanado, tomate e molho da casa</p>
+                                <div class="options">
+                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 49,90</h4>
+                                    <button type="submit" class="btn-cart">
+                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <div class="col-sm-6 col-lg-4 all burguer">
@@ -761,6 +786,8 @@
                         </div>
                     </div>
 
+
+
                     <div class="col-sm-6 col-lg-4 all combos">
                         <div class="box" data-id="22">
                             <div class="img-box">
@@ -796,60 +823,7 @@
                     </div>
 
 
-                    <!-- Yakisoba -->
-                    <div class="col-sm-6 col-lg-4 all yakisobas">
-                        <div class="box" data-id="24">
-                            <div class="img-box">
-                                <img src="itens/burguer-classico.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>YAKISOBA MISTO</h5>
-                                <p> Macarrão Japonês com carne bovina e frango servido com mix de legumes e shoyu</p>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 39,90</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-sm-6 col-lg-4 all yakisobas">
-                        <div class="box" data-id="25">
-                            <div class="img-box">
-                                <img src="itens/burguer-classico.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>YAKISOBA DE CARNE</h5>
-                                <p> Macarrão Japonês com carne bovina servido com mix de legumes e shoyu</p>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 39,90</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4 all yakisobas">
-                        <div class="box" data-id="26">
-                            <div class="img-box">
-                                <img src="itens/burguer-classico.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>YAKISOBA DE CAMARÃO</h5>
-                                <p> Macarrão Japonês com camarão servido com mix de legumes e shoyu</p>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 42,90</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
 
 
@@ -871,110 +845,8 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-lg-4 all caldos">
-                        <div class="box" data-id="28">
-                            <div class="img-box">
-                                <img src="itens/burguer-classico.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>FEIJÃO MEXICANO</h5>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 29,90</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4 all caldos">
-                        <div class="box" data-id="29">
-                            <div class="img-box">
-                                <img src="itens/burguer-classico.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>DOBRADINHA</h5>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$29,90</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4 all caldos">
-                        <div class="box" data-id="30">
-                            <div class="img-box">
-                                <img src="itens/burguer-classico.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>MOCOTÓ</h5>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$29,90</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
 
-
-                    <!-- Macarronadas -->
-                    <div class="col-sm-6 col-lg-4 all caldos">
-                        <div class="box" data-id="31">
-                            <div class="img-box">
-                                <img src="itens/burguer-classico.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>MACARRONADA - BOLONHESA + MIX DE QUEIJOS</h5>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 36,90</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4 all caldos">
-                        <div class="box" data-id="31">
-                            <div class="img-box">
-                                <img src="itens/burguer-classico.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>MACARRONADA - BRÓCOLIS AO MOLHO BRANCO + MIX DE QUEIJOS</h5>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 36,90</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4 all caldos">
-                        <div class="box" data-id="32">
-                            <div class="img-box">
-                                <img src="itens/burguer-classico.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>MACARRONADA - MOLHO DE COSTELA + MIX DE QUEIJOS</h5>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 39,90</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
 
 
@@ -1006,23 +878,6 @@
                                 <h5>COCA-COLA ZERO LATA</h5>
                                 <div class="options">
                                     <h4 style="color: #d18f00; font-size: 19PX;">R$ 8,00</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                 
-                    <div class="col-sm-6 col-lg-4 all bebidas">
-                        <div class="box" data-id="35">
-                            <div class="img-box">
-                                <img src="itens/refrigerante-2li.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>ICE SKIN</h5>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 7,00</h4>
                                     <button type="submit" class="btn-cart">
                                         Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
                                     </button>
@@ -1065,60 +920,6 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6 col-lg-4 all bebidas">
-                        <div class="box" data-id="37">
-                            <div class="img-box">
-                                <img src="itens/guaraplus.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>COPÃO TRADICIONAL</h5>
-                                <p>Whisky - gelo de água de coco e energético</p>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 25,00</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4 all bebidas">
-                        <div class="box" data-id="39">
-                            <div class="img-box">
-                                <img src="itens/guaraplus.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>COPÃO ABACAXI COM HORTELÃ</h5>
-                                <p>Whisky - gelo de água de coco e energético</p>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 25,00</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-4 all bebidas">
-                        <div class="box" data-id="40">
-                            <div class="img-box">
-                                <img src="itens/guaraplus.png" alt="Imagem do Produto">
-                            </div>
-                            <div class="detail-box">
-                                <h5>COPÃO MELANCIA</h5>
-                                <p>Whisky - gelo de água de coco e energético</p>
-                                <div class="options">
-                                    <h4 style="color: #d18f00; font-size: 19PX;">R$ 25,00</h4>
-                                    <button type="submit" class="btn-cart">
-                                        Adicionar <ion-icon data-dismiss="alert" name="cart-outline"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
 
                 </div>
             </div>
@@ -1148,13 +949,14 @@
                 <div class="col-md-4 footer-col">
                     <div class="footer_contact">
                         <h4>
-                            Contatos
+                            Endereço
                         </h4>
                         <div class="contact_link_box">
-                            <a href="">
+                            <a href="https://maps.app.goo.gl/E2m7mnC5n4SsRHyh9">
                                 <ion-icon name="location-outline"></ion-icon>
                                 <span>
-                                    Nova Friburgo, Nova Suiça
+                                    R. Nícola Yessi, 132 - Nova Suiça, Nova Friburgo - RJ<br>
+                                    Na praça Três Coqueiros
                                 </span>
                             </a>
                             <a href="#">
@@ -1168,17 +970,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 footer-col">
-                    <h4>
-                        Horários
-                    </h4>
-                    <p>
-                        Terça á Domingo
-                    </p>
-                    <p>
-                        18:30 ás 22:30
-                    </p>
-                </div>
+
             </div>
             <div class="col-md-12 text-center">
                 <ul class="footer-payments" style="margin-right: 30px;">

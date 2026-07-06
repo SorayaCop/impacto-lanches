@@ -14,7 +14,18 @@ function converterPreco(precoTexto) {
     ) || 0;
 }
 
+function obterTipoPedido() {
+    const selectTipoPedido = document.getElementById('inputOrderType');
+    return selectTipoPedido ? selectTipoPedido.value : 'entrega';
+}
+
 function obterValorFrete() {
+    const tipoPedido = obterTipoPedido();
+
+    if (tipoPedido === 'retirada') {
+        return 0;
+    }
+
     const selectBairro = document.getElementById('inputNeighborhood');
 
     if (!selectBairro || !selectBairro.value) {
@@ -23,6 +34,31 @@ function obterValorFrete() {
 
     const selectedOption = selectBairro.options[selectBairro.selectedIndex];
     return parseFloat(selectedOption.getAttribute('data-frete')) || 0;
+}
+
+function atualizarCamposPorTipoPedido() {
+    const tipoPedido = obterTipoPedido();
+
+    const neighborhoodRow = document.getElementById('neighborhood-row');
+    const addressRow = document.getElementById('address-row');
+
+    const inputNeighborhood = document.getElementById('inputNeighborhood');
+    const inputAddress = document.getElementById('inputAddress');
+    const inputZip = document.getElementById('inputZip');
+
+    if (tipoPedido === 'retirada') {
+        if (neighborhoodRow) neighborhoodRow.style.display = 'none';
+        if (addressRow) addressRow.style.display = 'none';
+
+        if (inputNeighborhood) inputNeighborhood.value = '';
+        if (inputAddress) inputAddress.value = '';
+        if (inputZip) inputZip.value = '';
+    } else {
+        if (neighborhoodRow) neighborhoodRow.style.display = '';
+        if (addressRow) addressRow.style.display = '';
+    }
+
+    atualizarTotal();
 }
 
 function atualizarTotal() {
@@ -145,25 +181,34 @@ if (selectBairro) {
     selectBairro.addEventListener('change', atualizarTotal);
 }
 
+const selectTipoPedido = document.getElementById('inputOrderType');
+
+if (selectTipoPedido) {
+    selectTipoPedido.addEventListener('change', atualizarCamposPorTipoPedido);
+}
+
 function validateInputs() {
     const name = document.getElementById("inputName").value.trim();
     const address = document.getElementById("inputAddress").value.trim();
     const neighborhood = document.getElementById("inputNeighborhood").value;
     const paymentMethod = document.getElementById("inputState").value;
-
-    if (!neighborhood) {
-        alert("Por favor, selecione seu bairro.");
-        return false;
-    }
+    const tipoPedido = obterTipoPedido();
 
     if (!name) {
         alert("Por favor, informe seu nome.");
         return false;
     }
 
-    if (!address) {
-        alert("Por favor, informe seu endereço.");
-        return false;
+    if (tipoPedido === 'entrega') {
+        if (!neighborhood) {
+            alert("Por favor, selecione seu bairro.");
+            return false;
+        }
+
+        if (!address) {
+            alert("Por favor, informe seu endereço.");
+            return false;
+        }
     }
 
     if (paymentMethod === "Forma de Pagamento") {
@@ -205,17 +250,30 @@ function generateWhatsAppMessage() {
     const observations = document.getElementById('inputAddress2').value.trim();
     const neighborhood = document.getElementById('inputNeighborhood').value;
     const paymentMethod = document.getElementById('inputState').value;
+    const tipoPedido = obterTipoPedido();
 
     const valorFrete = obterValorFrete();
     const totalFinal = totalProdutos + valorFrete;
 
+    message += `\n*Tipo do pedido: ${tipoPedido === 'retirada' ? 'Retirada na loja' : 'Entrega'}*`;
     message += `\n*Subtotal dos itens: ${formatarMoeda(totalProdutos)}*`;
-    message += `\n*Frete - ${neighborhood}: ${formatarMoeda(valorFrete)}*`;
+
+    if (tipoPedido === 'entrega') {
+        message += `\n*Frete - ${neighborhood}: ${formatarMoeda(valorFrete)}*`;
+    } else {
+        message += `\n*Frete: Retirada na loja*`;
+    }
+
     message += `\n*Total do pedido: ${formatarMoeda(totalFinal)}*\n\n`;
 
     message += `*Nome*: ${name}\n`;
-    message += `*Bairro*: ${neighborhood}\n`;
-    message += `*Endereço*: ${address}\n`;
+
+    if (tipoPedido === 'entrega') {
+        message += `*Bairro*: ${neighborhood}\n`;
+        message += `*Endereço*: ${address}\n`;
+    } else {
+        message += `*Retirada*: Cliente irá retirar na loja\n`;
+    }
 
     if (observations) {
         message += `*Observações*: ${observations}\n`;
@@ -239,3 +297,5 @@ function sendWhatsAppOrder() {
 
     window.open(whatsappLink, '_blank');
 }
+
+atualizarCamposPorTipoPedido();
